@@ -1,0 +1,147 @@
+package Stack;
+
+public class DoubleStack {
+
+	private int size;
+	private int[] arr;
+	private int top1, top2;
+
+	public DoubleStack(int size) {
+
+		this.size = size;
+		arr = new int[size];
+		this.top1 = -1;
+		this.top2 = size;
+	}
+
+	public boolean isEmpty1() {
+
+		if (top1 == -1) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isEmpty2() {
+
+		if (top2 == size) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isFull() {
+
+		if (top1 + 1 == top2) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean push1(int data) {
+
+		if (isFull()) {
+
+			return false;
+		}
+
+		arr[++top1] = data;
+		return true;
+	}
+
+	public boolean push2(int data) {
+
+		if (isFull()) {
+
+			return false;
+		}
+
+		arr[--top2] = data;
+		return true;
+	}
+
+	public int pop1() {
+
+		if (isEmpty1()) {
+			return -1;
+		}
+
+		return arr[top1--];
+	}
+
+	public int pop2() {
+
+		if (isEmpty2()) {
+			return -1;
+		}
+
+		return arr[top2++];
+	}
+
+}
+
+
+----------------
+
+package Stack;
+
+public class Tester {
+
+	public static void main(String[] args) {
+	
+		Stack<Integer> SingleStack = new Stack<>(5);
+		
+		SingleStack.push(10);
+		SingleStack.push(20);
+		SingleStack.push(30);
+		
+		System.out.print(" | Insrting 10 | 20 | 30 :- ");
+		System.out.println(" ");
+
+		System.out.print(" | Peeking :- ");
+		System.out.print(SingleStack.peek());
+		
+		
+		System.out.println(" ");
+
+		System.out.print(" | Popping (30) :- ");
+		System.out.print(SingleStack.pop());
+		
+
+		System.out.println(" ");
+		System.out.print(" | Peeking :- ");
+		System.out.print(SingleStack.peek());
+		
+		
+		DoubleStack DoubleStack = new DoubleStack(6);
+		
+		System.out.println(" | Pushing Into 1 (10/20/30) :- ");
+		DoubleStack.push1(10);
+		DoubleStack.push1(20);
+		DoubleStack.push1(30);
+		
+		System.out.println(" | Pushing Into 2 (10/20/30) :- ");
+		DoubleStack.push2(10);
+		DoubleStack.push2(20);
+		DoubleStack.push2(30);
+		
+		System.out.println(" | Popping From 1 (10/20/30) :- ");
+		System.out.println(DoubleStack.pop1());
+		
+		System.out.println(" | Popping From 2 (10/20/30) :- ");
+		System.out.println(DoubleStack.pop2());
+		
+		System.out.println(" | Popping From 1 Again (10/20/30) :- ");
+		System.out.println(DoubleStack.pop1());
+		
+		System.out.println(" | Popping From 2  Again (10/20/30) :- ");
+		System.out.println(DoubleStack.pop2());
+		
+		
+		
+		
+		
+		
+	}
+
+}
